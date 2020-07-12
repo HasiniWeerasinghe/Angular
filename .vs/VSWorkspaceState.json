@@ -9,10 +9,8 @@
     "\\src\\app\\footer",
     "\\src\\app\\header",
     "\\src\\app\\home",
-    "\\src\\app\\menu",
-    "\\src\\app\\services",
-    "\\src\\app\\shared"
+    "\\src\\app\\login"
   ],
-  "SelectedNode": "\\src\\app\\services\\leader.service.ts",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }
