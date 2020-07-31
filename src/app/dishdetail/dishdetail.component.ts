@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Dish } from '../shared/dish';
@@ -6,7 +6,7 @@ import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { DISHES } from '../shared/dishes';
+
 import { Comment } from '../shared/comment';
 
 
@@ -28,7 +28,7 @@ export class DishdetailComponent implements OnInit {
 
   commentForm: FormGroup;
   comment: Comment;
-  dishcopy: Dish;
+  //dishcopy: Dish;
   rating; 
   
   formErrors = {
@@ -44,11 +44,11 @@ export class DishdetailComponent implements OnInit {
     'author': {
       'required': 'Author Name is required.',
       'minlength': 'Author Name must be at least 2 characters long.',
-      'maxlength': 'Author Name cannot be more than 25 characters long.'
+      
     },
     'comment': {
       'required': 'Comment is required.',
-      'minlength': 'Comment must be at least 2 characters long.',
+      
       
     },
     
@@ -58,7 +58,8 @@ export class DishdetailComponent implements OnInit {
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Inject('baseURL') private baseURL
   ) {
     this.createForm();
   }
@@ -79,8 +80,8 @@ export class DishdetailComponent implements OnInit {
   }
   createForm(): void {
     this.commentForm = this.fb.group({
-      author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      comment: ['', [Validators.required, Validators.minLength(2)]],
+      author: ['', [Validators.required, Validators.minLength(2)]],
+      comment: ['', [Validators.required]],
       rating: 5
       
     });
@@ -114,12 +115,12 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     this.comment = this.commentForm.value;
     this.comment.date = new Date().toDateString();
-    //this.dishcopy.comments.push(this.comment);
-    DISHES.map(dish => {
-      if (dish.id === this.dish.id) {
-        dish.comments.push(this.comment);
-      }
-    });
+    this.dish.comments.push(this.comment);
+    //DISHES.map(dish => {
+    //  if (dish.id === this.dish.id) {
+    //    dish.comments.push(this.comment);
+    //  }
+    //});
     console.log(this.comment);
     this.commentForm.reset({
       author: '',
