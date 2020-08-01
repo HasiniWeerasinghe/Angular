@@ -9,8 +9,8 @@
     "\\src\\app\\footer",
     "\\src\\app\\header",
     "\\src\\app\\home",
-    "\\src\\app\\shared"
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\services\\dish.service.ts",
+  "SelectedNode": "\\src\\app\\dishdetail\\dishdetail.component.ts",
   "PreviewInSolutionExplorer": false
 }
