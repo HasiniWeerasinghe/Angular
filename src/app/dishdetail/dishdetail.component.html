@@ -5,7 +5,7 @@
      fxLayoutAlign.gt-md="space-around center"
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <div fxFlex>
       <mat-card>
         <mat-card-header>
@@ -30,7 +30,7 @@
       </mat-card>
     </div>
   </div>
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <h3>Comments</h3>
     <mat-list>
       <mat-list-item *ngFor="let comment of dish.comments">
@@ -46,14 +46,14 @@
       </mat-list-item>
     </mat-list>
     <!--div *ngIf="arr">
-      <mat-list-item *ngFor="let val of arr">
+    <mat-list-item *ngFor="let val of arr">
 
-        <p matLine>{{val.comment}}</p>
-        <p matLine>{{val.rating}} Stars</p>
-        <p matLine>-- {{val.author}} {{val.date | date }}</p>
+      <p matLine>{{val.comment}}</p>
+      <p matLine>{{val.rating}} Stars</p>
+      <p matLine>-- {{val.author}} {{val.date | date }}</p>
 
-      </mat-list-item>
-    </div>-->
+    </mat-list-item>
+  </div>-->
 
     <mat-list-item *ngIf="commentForm.valid">
 
@@ -73,16 +73,15 @@
 
       </p>
       <p>
-        <mat-slider 
-                    max="5"
+        <mat-slider max="5"
                     step="1"
                     thumbLabel
                     tickInterval="1"
                     formControlName="rating">
         </mat-slider>
-        
+
       </p>
-      
+
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="comment" placeholder="Your Comment" type="text" required>
